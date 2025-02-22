@@ -87,7 +87,7 @@ jobs:
       - name: Define root or user modules
         id: check_user
         run: |
-          ssh -i ~/.ssh/id_ed25519 root@${{ secrets.DEPLOY_HOST }} "exit"
+          ssh -i ~/.ssh/id_ed25519 root@${{ vars.DEPLOY_HOST }} "exit"
           if [ $? -eq 0 ]; then
             echo "user=root" >> $GITHUB_ENV
           else
