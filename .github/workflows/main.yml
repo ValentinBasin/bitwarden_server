@@ -96,4 +96,4 @@ jobs:
         continue-on-error: true
 
       - name: Run playbook
-        run: ansible-playbook -i inventory.ini setup_user.yml -u ${{ env.user }} --private-key ~/.ssh/id_ed25519
+        run: ansible-playbook -i ${{ vars.DEPLOY_HOST }} setup_user.yml -u ${{ env.user }} --private-key ~/.ssh/id_ed25519
