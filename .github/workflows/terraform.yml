@@ -87,7 +87,11 @@ jobs:
 
       # Generates an execution plan for Terraform
       - name: Terraform Plan
-        run: terraform plan -input=false
+        run: |
+          echo $AWS_ACCESS_KEY_ID
+          echo $AWS_SECRET_ACCESS_KEY
+          echo $AWS_REGION
+          terraform plan -input=false
         env:
           TF_VAR_hcloud_token: ${{ secrets.HCLOUD_TOKEN }}
           TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
