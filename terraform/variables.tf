@@ -3,16 +3,6 @@ variable "hcloud_token" {
   type      = string
 }
 
-variable "aws_access_key" {
-  sensitive = true
-  type      = string
-}
-
-variable "aws_secret_key" {
-  sensitive = true
-  type      = string
-}
-
 variable "cloudflare_api_token" {
   sensitive = true
   type      = string
@@ -34,18 +24,6 @@ variable "datacenter" {
 }
 
 variable "zone_id" {
-  type = string
-}
-
-variable "state_bucket" {
-  type = string
-}
-
-variable "state_filename" {
-  type = string
-}
-
-variable "aws_region" {
   type = string
 }
 
