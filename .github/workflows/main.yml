@@ -82,6 +82,7 @@ jobs:
 
       - name: Check deploy user connection
         run: ssh -i ~/.ssh/id_ed25519 deploy@${{ vars.DEPLOY_HOST }} "echo 'Deploy user is available'"
+        continue-on-error: true
 
       - name: Define root or user modules
         id: check_user
