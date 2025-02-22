@@ -62,12 +62,6 @@ resource "hcloud_server" "server" {
   ssh_keys = [hcloud_ssh_key.github_actions.id]
 }
 
-# data "cloudflare_zone" "domain" {
-#   filter = {
-#     name = var.cloudflare_zone
-#   }
-# }
-
 resource "cloudflare_dns_record" "dns_a" {
   zone_id = var.zone_id
   name    = var.server_name
