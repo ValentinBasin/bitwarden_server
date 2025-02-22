@@ -5,12 +5,12 @@ variable "hcloud_token" {
 
 variable "aws_access_key" {
   sensitive = true
-  type = string
+  type      = string
 }
 
 variable "aws_secret_key" {
   sensitive = true
-  type = string
+  type      = string
 }
 
 variable "cloudflare_api_token" {
@@ -34,7 +34,7 @@ variable "datacenter" {
 }
 
 variable "zone_id" {
-  type    = string
+  type = string
 }
 
 variable "state_bucket" {
@@ -50,6 +50,6 @@ variable "aws_region" {
 }
 
 variable "server_name" {
-  type = string
+  type    = string
   default = "bitwarden"
 }
