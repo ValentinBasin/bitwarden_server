@@ -91,6 +91,7 @@ jobs:
           echo $AWS_ACCESS_KEY_ID
           echo $AWS_SECRET_ACCESS_KEY
           echo $AWS_REGION
+          echo $TF_VAR_server_name
           terraform plan -input=false
         env:
           TF_VAR_hcloud_token: ${{ secrets.HCLOUD_TOKEN }}
