@@ -16,6 +16,7 @@ crash.*.log
 # to change depending on the environment.
 *.tfvars
 *.tfvars.json
+backend.hcl
 
 # Ignore override files as they are usually used to override resources locally and so
 # are not checked in
@@ -66,10 +67,3 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
-# Hugo files
-myblog/public/
-myblog/resources/
-myblog/.cache
-myblog/hugo_stats.json
-myblog/.hugo_build.lock

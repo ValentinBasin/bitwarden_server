@@ -1,8 +1,5 @@
 terraform {
   backend "s3" {
-    bucket       = "my-blog-terraform-state-7f2a377158c"
-    key          = "bw-terraform-state/terraform.tfstate"
-    region       = "il-central-1"
     encrypt      = true
     use_lockfile = true
   }
@@ -14,7 +11,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 5"
+      version = "~> 5.1"
     }
   }
 }
@@ -45,7 +42,7 @@ resource "hcloud_primary_ip" "ipv6" {
 
 resource "hcloud_ssh_key" "github_actions" {
   name       = "github-actions"
-  public_key = file("./ssh_keys/github-actions.pub")
+  public_key = file("../content/ssh_keys/github-actions.pub")
 }
 
 resource "hcloud_server" "server" {
@@ -62,7 +59,14 @@ resource "hcloud_server" "server" {
   ssh_keys = [hcloud_ssh_key.github_actions.id]
 }
 
+# data "cloudflare_zone" "dns_zone" {
+#   filter = {
+#     name = "vbasin.org"
+#   }
+# }
+#
 resource "cloudflare_dns_record" "dns_a" {
+  # zone_id = data.cloudflare_zone.dns_zone.id
   zone_id = var.zone_id
   name    = var.server_name
   type    = "A"
@@ -72,6 +76,7 @@ resource "cloudflare_dns_record" "dns_a" {
 }
 
 resource "cloudflare_dns_record" "dns_aaaa" {
+  # zone_id = data.cloudflare_zone.dns_zone.id
   zone_id = var.zone_id
   name    = var.server_name
   type    = "AAAA"
