@@ -1,0 +1,15 @@
+- name: Create directory
+  ansible.builtin.file:
+    path: /opt/bitwarden
+    state: directory
+    mode: '0700'
+    owner: bitwarden
+    group: bitwarden
+
+- name: Download Bitwarden setup script
+  ansible.builtin.get_url:
+    url: https://func.bitwarden.com/api/dl/?app=self-host&platform=linux
+    dest: /opt/bitwarden
+    owner: bitwarden
+    group: bitwarden
+    mode: '0700'

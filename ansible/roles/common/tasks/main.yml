@@ -1,0 +1,16 @@
+- name: Update cache packages
+  ansible.builtin.apt:
+    update_cache: true
+
+- name: Upgrade system
+  ansible.builtin.apt:
+    upgrade: dist
+    autoremove: true
+
+- name: Install common packages
+  ansible.builtin.apt:
+    name:
+      - curl
+      - htop
+      - jq
+    state: present

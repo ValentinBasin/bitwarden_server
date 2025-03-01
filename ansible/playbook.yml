@@ -1,35 +1,8 @@
-- name: main playbook
+- name: Setup Bitwarden server
   hosts: all
   become: true
-  tasks:
-    - name: Create User
-      ansible.builtin.user:
-        name: deploy
-        shell: /bin/bash
-        groups: sudo
-        create_home: true
-
-    - name: Copy SSH Key
-      ansible.builtin.authorized_key:
-        user: deploy
-        key: "{{ lookup('file', './content/ssh_keys/github-actions.pub') }}"
-        state: present
-
-    - name: Allow sudo without password
-      copy:
-        dest: /etc/sudoers.d/deploy
-        content: "deploy ALL=(ALL) NOPASSWD:ALL"
-        mode: "0440"
-
-    - name: Diasble SSH for root
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        regexp: "^#?PermitRootLogin"
-        line: "PermitRootLogin no"
-      notify: Restart SSH
-
-  handlers:
-    - name: Restart SSH
-      service:
-        name: ssh
-        state: restarted
+  roles:
+    - role: common
+    - role: deploy_user
+    - role: security
+    - role: bitwarden

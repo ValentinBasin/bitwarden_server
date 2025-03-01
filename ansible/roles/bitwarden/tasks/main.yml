@@ -1,0 +1,8 @@
+- name: Install Docker
+  ansible.builtin.import_tasks: install.yml
+
+- name: Create Bitwarden user
+  ansible.builtin.import_tasks: bw_user.yml
+
+- name: Create Bitwarden install files
+  ansible.builtin.import_tasks: create_files.yml

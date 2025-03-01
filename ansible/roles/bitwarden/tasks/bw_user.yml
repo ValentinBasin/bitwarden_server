@@ -1,0 +1,11 @@
+- name: Ensure group "docker" exists
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Create user
+  ansible.builtin.user:
+    name: bitwarden
+    shell: /bin/bash
+    groups: docker
+    create_home: true
