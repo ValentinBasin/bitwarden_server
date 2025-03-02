@@ -99,4 +99,4 @@ jobs:
         continue-on-error: true
 
       - name: Run playbook
-        run: ansible-playbook -i ${{ vars.DEPLOY_HOST }}, playbook.yml -u ${{ env.user }} --private-key ~/.ssh/id_ed25519
+        run: ansible-playbook -i ${{ vars.DEPLOY_HOST }}, playbook.yml -u ${{ env.user }} --private-key ~/.ssh/id_ed25519 -vvv
