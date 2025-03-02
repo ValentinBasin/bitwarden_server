@@ -8,7 +8,7 @@
 - name: Copy SSH Key
   ansible.builtin.authorized_key:
     user: deploy
-    key: "{{ lookup('file', './content/ssh_keys/github-actions.pub') }}"
+    key: "{{ lookup('file', '../content/ssh_keys/github-actions.pub') }}"
     state: present
 
 - name: Allow sudo without password
