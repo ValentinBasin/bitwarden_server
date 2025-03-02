@@ -91,10 +91,10 @@ jobs:
       - name: Define root or user modules
         id: check_user
         run: |
-          if ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes root@${{ vars.DEPLOY_HOST }} "exit" 2>/dev/null; then
-            echo "user=root" >> $GITHUB_ENV
-          else
+          if ssh -i ~/.ssh/id_ed25519 -o BatchMode=yes deploy@${{ vars.DEPLOY_HOST }} "exit" 2>/dev/null; then
             echo "user=deploy" >> $GITHUB_ENV
+          else
+            echo "user=root" >> $GITHUB_ENV
           fi
         continue-on-error: true
 
