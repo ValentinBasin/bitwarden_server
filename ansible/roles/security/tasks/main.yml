@@ -12,28 +12,28 @@
     line: 'PasswordAuthentication no'
   notify: Restart SSH
 
-- name: Install Fail2Ban
-  ansible.builtin.apt:
-    name: fail2ban
-    state: present
-
-- name: Create Fail2Ban filter for root
-  ansible.builtin.template:
-    src: ssh-root.conf.j2
-    dest: /etc/fail2ban/filter.d/sshd-root.conf
-    mode: '0644'
-    owner: root
-    group: root
-  notify: Restart Fail2Ban
-
-- name: Copy Fail2Ban config
-  ansible.builtin.template:
-    src: jail.local.j2
-    dest: /etc/fail2ban/jail.local
-    mode: '0644'
-    owner: root
-    group: root
-  notify: Restart Fail2Ban
+# - name: Install Fail2Ban
+#   ansible.builtin.apt:
+#     name: fail2ban
+#     state: present
+#
+# - name: Create Fail2Ban filter for root
+#   ansible.builtin.template:
+#     src: ssh-root.conf.j2
+#     dest: /etc/fail2ban/filter.d/sshd-root.conf
+#     mode: '0644'
+#     owner: root
+#     group: root
+#   notify: Restart Fail2Ban
+#
+# - name: Copy Fail2Ban config
+#   ansible.builtin.template:
+#     src: jail.local.j2
+#     dest: /etc/fail2ban/jail.local
+#     mode: '0644'
+#     owner: root
+#     group: root
+#   notify: Restart Fail2Ban
 
 - name: Install unattended-upgrades
   ansible.builtin.apt:
