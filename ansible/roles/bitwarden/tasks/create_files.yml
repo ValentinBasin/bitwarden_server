@@ -9,7 +9,7 @@
 - name: Download Bitwarden setup script
   ansible.builtin.get_url:
     url: https://func.bitwarden.com/api/dl/?app=self-host&platform=linux
-    dest: /opt/bitwarden
+    dest: /opt/bitwarden/bitwarden.sh
     owner: bitwarden
     group: bitwarden
     mode: '0700'
