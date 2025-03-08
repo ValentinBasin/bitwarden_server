@@ -24,7 +24,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "backup_rotation" {
       days = 60
     }
 
-    status = Enabled
+    status = "Enabled"
   }
 }
 
