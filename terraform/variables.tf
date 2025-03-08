@@ -31,3 +31,11 @@ variable "server_name" {
   type    = string
   default = "bitwarden"
 }
+
+variable "aws_region" {
+  type = string
+}
+
+variable "backup_bucket_name" {
+  type = string
+}
