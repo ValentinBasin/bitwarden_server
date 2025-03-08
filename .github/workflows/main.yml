@@ -22,6 +22,8 @@ jobs:
       TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       TF_VAR_server_name: ${{ vars.SERVER_NAME }}
       TF_VAR_zone_id: ${{ vars.ZONE_ID }}
+      TF_VAR_aws_region: ${{ vars.AWS_REGION }}
+      TF_VAR_backup_bucket_name: ${{ vars.AWS_BACKUP_BUCKET }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
