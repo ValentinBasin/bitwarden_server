@@ -28,11 +28,6 @@ resource "aws_s3_bucket_lifecycle_configuration" "backup_rotation" {
   }
 }
 
-resource "aws_s3_bucket_acl" "backup_bucket_acl" {
-  bucket = aws_s3_bucket.backup.id
-  acl    = "private"
-}
-
 resource "aws_iam_policy" "s3_backup_policy" {
   name        = "S3BackupPolicy"
   description = "Policy for server to upload backups to S3"
