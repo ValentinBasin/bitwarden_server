@@ -6,3 +6,4 @@
     - role: deploy_user
     - role: security
     - role: bitwarden
+    - role: backup
