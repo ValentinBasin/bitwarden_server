@@ -59,12 +59,12 @@ resource "aws_iam_access_key" "bitwarden_user_key" {
   user = aws_iam_user.bitwarden_backup_user.name
 }
 
-output "aws_access_key_id" {
+output "aws_access_key" {
   value     = aws_iam_access_key.bitwarden_user_key.id
   sensitive = true
 }
 
-output "aws_secret_access_key" {
+output "aws_secret_key" {
   value     = aws_iam_access_key.bitwarden_user_key.secret
   sensitive = true
 }
