@@ -41,10 +41,12 @@
     state: directory
     mode: '0700'
     owner: 'bitwarden'
+    group: 'bitwarden'
 
 - name: Configure AWS credentials
   ansible.builtin.template:
     src: aws_credentials.j2
     dest: /home/bitwarden/.aws/credentials
     mode: '0600'
-    owner: bitwarden
+    owner: 'bitwarden'
+    group: 'bitwarden'
