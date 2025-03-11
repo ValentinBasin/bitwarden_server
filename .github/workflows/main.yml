@@ -67,8 +67,8 @@ jobs:
 
       - name: Write outputs
         run: |
-          echo "::set-output name=aws_access_key::$(terraform output -raw aws_access_key)"
-          echo "::set-output name=aws_secret_key::$(terraform output -raw aws_secret_key)"
+          echo "aws_access_key=$(terraform output -raw aws_access_key)" >> $GITHUB_OUTPUT
+          echo "aws_secret_key=$(terraform output -raw aws_secret_key)" >> $GITHUB_OUTPUT
 
   ansible:
     needs: terraform
