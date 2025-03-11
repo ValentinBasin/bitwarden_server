@@ -68,8 +68,8 @@ jobs:
       - name: Write outputs
         id: terraform
         run: |
-          echo "aws_access_key=$(terraform output aws_access_key | tr -d '\r' | sed 's/[^a-zA-Z0-9]//g' )" >> $GITHUB_OUTPUT
-          echo "aws_secret_key=$(terraform output aws_secret_key | tr -d '\r' | sed 's/[^a-zA-Z0-9]//g' )" >> $GITHUB_OUTPUT
+          echo "aws_access_key=$(terraform output aws_access_key | xargs )" >> $GITHUB_OUTPUT
+          echo "aws_secret_key=$(terraform output aws_secret_key | xargs )" >> $GITHUB_OUTPUT
 
   ansible:
     needs: terraform
