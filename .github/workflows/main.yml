@@ -65,7 +65,8 @@ jobs:
       - name: Terraform Apply
         run: |
           terraform apply -auto-approve -input=false
-          echo "$(terraform output -json)" > $GITHUB_WORKSPACE/terraform_outputs.json
+          terraform output -json > $GITHUB_WORKSPACE/terraform_outputs.json 2>/dev/null
+          #echo "$(terraform output -json)" > $GITHUB_WORKSPACE/terraform_outputs.json 
           cat -A $GITHUB_WORKSPACE/terraform_outputs.json
           od -c $GITHUB_WORKSPACE/terraform_outputs.json
 
