@@ -68,7 +68,7 @@ jobs:
           echo "$(terraform output -json)" > terraform_outputs.json
 
       - name: Upload Terraform outputs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: terraform-outputs
           path: terraform_outputs.json
