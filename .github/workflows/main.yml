@@ -67,6 +67,7 @@ jobs:
           terraform apply -auto-approve -input=false
           echo "$(terraform output -json)" > $GITHUB_WORKSPACE/terraform_outputs.json
           cat -A $GITHUB_WORKSPACE/terraform_outputs.json
+          od -c $GITHUB_WORKSPACE/terraform_outputs.json
 
       - name: Upload Terraform outputs
         uses: actions/upload-artifact@v4
@@ -104,6 +105,7 @@ jobs:
 
       - name: Read Terraform outputs
         run: |
+          od -c $GITHUB_WORKSPACE/terraform_outputs.json         
           cat -A $GITHUB_WORKSPACE/terraform_outputs.json
           export AWS_ACCESS_KEY=$(jq -r '.aws_access_key.value' ${{ github.workspace }}/terraform_outputs.json)
           export AWS_SECRET_KEY=$(jq -r '.aws_secret_key.value' ${{ github.workspace }}/terraform_outputs.json)
