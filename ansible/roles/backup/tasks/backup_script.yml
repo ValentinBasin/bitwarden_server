@@ -23,3 +23,4 @@
     job: "/opt/bitwarden/backup/backup.sh"
     minute: "0"
     hour: "3"
+    user: "bitwarden"
