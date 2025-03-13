@@ -44,9 +44,10 @@
     group: 'bitwarden'
 
 - name: Configure AWS credentials
-  environment:
-    AWS_ACCESS_KEY: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
-    AWS_SECRET_KEY: "{{ lookup('env', 'AWS_SECRET_KEY') }}"
+  vars:
+    aws_access_key: "{{ lookup('env', 'AWS_ACCESS_KEY') }}"
+    aws_secret_key: "{{ lookup('env', 'AWS_SECRET_KEY') }}"
+    aws_region: "{{ lookup('env', 'AWS_REGION') }}"
   ansible.builtin.template:
     src: aws_credentials.j2
     dest: /home/bitwarden/.aws/credentials
