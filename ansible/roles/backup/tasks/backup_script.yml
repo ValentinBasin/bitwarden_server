@@ -1,0 +1,18 @@
+- name: Create backup directory
+  ansible.builtin.file:
+    path: /opt/bitwarden/backup
+    state: directory
+    mode: '0700'
+    owner: 'bitwarden'
+    group: 'bitwarden'
+
+- name: Create backup script
+  vars:
+    s3_bucket: "{{ lookup('env', 'S3_BUCKET') }}"
+    backup_password: "{{ lookup('env', 'BACKUP_PASSWORD') }}"
+  ansible.builtin.template:
+    src: backup.sh.j2
+    dest: /opt/bitwarden/backup/backup.sh
+    mode: '0700'
+    owner: 'bitwarden'
+    group: 'bitwarden'

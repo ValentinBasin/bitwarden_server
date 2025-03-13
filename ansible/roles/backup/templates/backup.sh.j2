@@ -1,5 +1,3 @@
-export $(grep -v '^#' .env | xargs)
-
 BACKUP_FILE="bitwarden_backup_$(date +%F).tar.gz"
 ENCRYPTED_FILE="$BACKUP_FILE.gpg"
 
@@ -7,12 +5,12 @@ ENCRYPTED_FILE="$BACKUP_FILE.gpg"
 tar -czvf "$BACKUP_FILE" "$BACKUP_PATH"
 
 # Encryption
-gpg --batch --yes --passphrase "$GPG_PASSPHRASE" --symmetric --cipher-algo AES256 -o "$ENCRYPTED_FILE" "$BACKUP_FILE"
+gpg --batch --yes --passphrase "{{ backup_password }}" --symmetric --cipher-algo AES256 -o "$ENCRYPTED_FILE" "$BACKUP_FILE"
 
 # Upload to S3
-aws s3 cp "$ENCRYPTED_FILE" "$S3_BUCKET"
+aws s3 cp "$ENCRYPTED_FILE" "s3://{{ s3_bucket }}/backups/$ENCRYPTED_FILE"
 
 # Clean local files
 rm -f "$BACKUP_FILE" "$ENCRYPTED_FILE"
 
-echo "Backup downloded successfully to S3: $S3_BUCKET"
+echo "Backup downloded successfully to S3: {{ s3_bucket }}"

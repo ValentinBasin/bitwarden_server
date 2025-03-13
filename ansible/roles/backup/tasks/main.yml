@@ -1,2 +1,5 @@
 - name: Install AWS CLI
   ansible.builtin.import_tasks: install_aws.yml
+
+- name: Create backup script
+  ansible.builtin.import_tasks: backup_script.yml
