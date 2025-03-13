@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd /opt/bitwarden/backup
 BACKUP_FILE="bitwarden_backup_$(date +%F).tar.gz"
 ENCRYPTED_FILE="$BACKUP_FILE.gpg"
 BACKUP_PATH="/opt/bitwarden/bwdata"
