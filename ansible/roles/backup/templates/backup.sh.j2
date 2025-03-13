@@ -1,5 +1,8 @@
+#!/bin/bash
+
 BACKUP_FILE="bitwarden_backup_$(date +%F).tar.gz"
 ENCRYPTED_FILE="$BACKUP_FILE.gpg"
+BACKUP_PATH="/opt/bitwarden/bwdata"
 
 # Create backup arcive
 tar -czvf "$BACKUP_FILE" "$BACKUP_PATH"
@@ -13,4 +16,4 @@ aws s3 cp "$ENCRYPTED_FILE" "s3://{{ s3_bucket }}/backups/$ENCRYPTED_FILE"
 # Clean local files
 rm -f "$BACKUP_FILE" "$ENCRYPTED_FILE"
 
-echo "Backup downloded successfully to S3: {{ s3_bucket }}"
+echo "Backup downloded successfully to S3:{{ s3_bucket }}"

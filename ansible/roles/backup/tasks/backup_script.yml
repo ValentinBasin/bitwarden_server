@@ -16,3 +16,10 @@
     mode: '0700'
     owner: 'bitwarden'
     group: 'bitwarden'
+
+- name: Setup cron job for backups
+  ansible.builtin.cron:
+    name: "Backup to S3"
+    job: "/opt/bitwarden/backup/backup.sh"
+    minute: "0"
+    hour: "3"
