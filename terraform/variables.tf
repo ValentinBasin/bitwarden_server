@@ -39,3 +39,38 @@ variable "aws_region" {
 variable "backup_bucket_name" {
   type = string
 }
+
+variable "telegram_bot_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "telegram_chat_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "s3_bucket_prefix" {
+  type    = string
+  default = ""
+}
+
+variable "check_schedule_cron" {
+  type    = string
+  default = "cron(0 3 * * ? *)"
+}
+
+variable "monitor_function_name_prefix" {
+  type    = string
+  default = "s3-backup-monitor"
+}
+
+variable "telegram_gateway_function_name_prefix" {
+  type    = string
+  default = "sns-to-telegram-gateway"
+}
+
+variable "sns_topic_name" {
+  type    = string
+  default = "S3-Backup-Alerts"
+}

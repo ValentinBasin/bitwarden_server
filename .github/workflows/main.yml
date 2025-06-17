@@ -28,6 +28,11 @@ jobs:
       TF_VAR_zone_id: ${{ vars.ZONE_ID }}
       TF_VAR_aws_region: ${{ vars.AWS_REGION }}
       TF_VAR_backup_bucket_name: ${{ vars.AWS_BACKUP_BUCKET }}
+      TF_VAR_telegram_bot_token: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TF_VAR_telegram_chat_id: ${{ secrets.TELEGRAM_CHAT_ID }}
+      TF_VAR_s3_bucket_prefix: ${{ vars.S3_BUCKET_PREFIX }}
+      TF_VAR_check_schedule_cron: ${{ vars.CHECK_SCHEDULE_CRON }}
+      TF_VAR_sns_topic_name: ${{ vars.SNS_TOPIC_NAME }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -46,7 +51,18 @@ jobs:
         with:
           terraform_wrapper: false
 
-      # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+      - name: Zip S3 Monitor Lambda function
+        run: |
+          cd ${{ github.workspace }}/lambda_src_monitor
+          zip -r ../${{ env.TF_WORKING_DIR }}/monitor_lambda_payload.zip .
+        shell: bash
+
+      - name: Zip SNS to Telegram Gateway Lambda function
+        run: |
+          cd ${{ github.workspace }}/lambda_src_telegram
+          zip -r ../${{ env.TF_WORKING_DIR }}/telegram_lambda_payload.zip .
+        shell: bash
+
       - name: Terraform Init
         run: |
           terraform init \
@@ -68,7 +84,6 @@ jobs:
         run: |
           terraform apply -auto-approve -input=false
           terraform output -json > $GITHUB_WORKSPACE/terraform_outputs.json 2>/dev/null
-          #echo "$(terraform output -json)" > $GITHUB_WORKSPACE/terraform_outputs.json 
           cat -A $GITHUB_WORKSPACE/terraform_outputs.json
           od -c $GITHUB_WORKSPACE/terraform_outputs.json
 
